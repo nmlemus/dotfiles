@@ -1,0 +1,13 @@
+# Oh My Zsh plugins list
+# Core plugins (bundled with omz)
+git
+macos
+z
+fzf
+
+# Custom plugins (installed separately)
+zsh-autosuggestions
+zsh-syntax-highlighting
+zsh-history-substring-search
+zsh-completions
+fzf-tab
