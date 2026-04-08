@@ -97,18 +97,19 @@ fi
 step "Installing custom ZSH plugins..."
 ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
 
-declare -A PLUGIN_REPOS=(
-  [zsh-autosuggestions]="https://github.com/zsh-users/zsh-autosuggestions"
-  [zsh-syntax-highlighting]="https://github.com/zsh-users/zsh-syntax-highlighting"
-  [zsh-history-substring-search]="https://github.com/zsh-users/zsh-history-substring-search"
-  [zsh-completions]="https://github.com/zsh-users/zsh-completions"
-  [fzf-tab]="https://github.com/Aloxaf/fzf-tab"
-)
+PLUGINS="
+zsh-autosuggestions https://github.com/zsh-users/zsh-autosuggestions
+zsh-syntax-highlighting https://github.com/zsh-users/zsh-syntax-highlighting
+zsh-history-substring-search https://github.com/zsh-users/zsh-history-substring-search
+zsh-completions https://github.com/zsh-users/zsh-completions
+fzf-tab https://github.com/Aloxaf/fzf-tab
+"
 
-for plugin in "${!PLUGIN_REPOS[@]}"; do
+echo "$PLUGINS" | while read -r plugin repo; do
+  [[ -z "$plugin" ]] && continue
   if [[ ! -d "$ZSH_CUSTOM/plugins/$plugin" ]]; then
     echo "  Installing $plugin..."
-    git clone --depth=1 "${PLUGIN_REPOS[$plugin]}" "$ZSH_CUSTOM/plugins/$plugin"
+    git clone --depth=1 "$repo" "$ZSH_CUSTOM/plugins/$plugin"
     ok "$plugin installed"
   else
     ok "$plugin already installed"
