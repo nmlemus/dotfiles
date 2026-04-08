@@ -1,4 +1,14 @@
 # ─────────────────────────────────────────────────────────
+# Fix zsh-completions: rebuild compinit cache only once daily
+# ─────────────────────────────────────────────────────────
+autoload -Uz compinit
+if [[ -f ~/.zcompdump && $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null) ]]; then
+  compinit
+else
+  compinit -C
+fi
+
+# ─────────────────────────────────────────────────────────
 # Modern CLI tools & aliases
 # ─────────────────────────────────────────────────────────
 

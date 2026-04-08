@@ -146,7 +146,7 @@ fi
 # Ensure plugins are correct
 if grep -q '^plugins=(' "$HOME/.zshrc"; then
   # Replace the plugins block
-  PLUGIN_LIST="plugins=(\n  git\n  macos\n  z\n  fzf\n  zsh-autosuggestions\n  zsh-syntax-highlighting\n  zsh-history-substring-search\n  zsh-completions\n  fzf-tab\n)"
+  PLUGIN_LIST="plugins=(\n  git\n  macos\n  fzf\n  zsh-autosuggestions\n  zsh-syntax-highlighting\n  zsh-history-substring-search\n  zsh-completions\n  fzf-tab\n)"
   # Use perl for multiline replace
   perl -i -0pe "s/plugins=\([^)]*\)/$(/bin/echo "$PLUGIN_LIST")/s" "$HOME/.zshrc"
   ok "Plugins configured"

@@ -2,7 +2,6 @@
 # Core plugins (bundled with omz)
 git
 macos
-z
 fzf
 
 # Custom plugins (installed separately)
